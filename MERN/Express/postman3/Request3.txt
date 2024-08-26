@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:locale" content="en-US">
+    <meta name="description"
+        content="What are HTTP Get Requests? Client-Server Architecture. How to create a GET request in postman? How to check the response in postman?">
+    <meta property="og:description"
+        content="What are HTTP Get Requests? Client-Server Architecture. How to create a GET request in postman? How to check the response in postman?">
+    <meta name="twitter:description"
+        content="What are HTTP Get Requests? Client-Server Architecture. How to create a GET request in postman? How to check the response in postman?">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="TOOLSQA">
+    <meta property="article:publisher" content="https://www.facebook.com/Toolsqa-232121730314026">
+    <meta property="article:published_time" content="January 29 2022">
+    <meta property="article:modified_time" content="August 23 2024">
+    <meta property="og:image" content="/api/gallery/Postman/Get-Request-in-Postman-2.jpg">
+    <meta name="keywords" content="PostMan, RestAPI Testing">
+    <meta name="author" content="Harish Rajora">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" />
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="4e6665451f34be6c768797d8-|49"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap"
+        media="print" onload="this.media='all'" />
+    <link rel="shortcut icon" type="image/webp" href="/static/images/logo/Favicon.webp" />
+    <title>What are GET Requests and How To Use Them in Postman?</title>
+    <meta property="og:title" content="What are GET Requests and How To Use Them in Postman?">
+    <meta name="twitter:title" content="What are GET Requests and How To Use Them in Postman?">
+    <link rel="stylesheet" href="/static/css/article.css">
+    <script data-ad-client="ca-pub-5889298451609146" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        type="4e6665451f34be6c768797d8-text/javascript">
+    </script>
+    <script type="4e6665451f34be6c768797d8-text/javascript">
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-K5TWNW8');
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VB4JVJRDPP"
+        type="4e6665451f34be6c768797d8-text/javascript"></script>
+    <script type="4e6665451f34be6c768797d8-text/javascript">
+        window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-VB4JVJRDPP');
+    </script>
+</head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5TWNW8" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <a class="navbar__brand col-auto order-0" href="/">
+                        <img src="/static/images/logo/tools-qa.png" alt="Tools QA" class="tools-qa-header__logo">
+                    </a>
+                    <div class="navbar__actions col-auto ml-auto d-block d-lg-none order-3">
+                        <button class="btn btn-icon" aria-label="Search"><i class="icon-search"></i></button>
+                        <button id="hamburger-menu" class="btn btn-icon" aria-label="Menu"><i class="icon-Union"></i>
+</button>
+                    </div>
+                    <div class="navbar__search--xs order-3 col-12">
+                        <form action="/search" method="GET" autocomplete="off" id="search-form" class="mb-3">
+                            <input type="text" class="navbar__search--input w-100" placeholder="Search" aria-label="Search" name="keyword">
+                            <icon class="icon-search"></icon>
+                        </form>
+                    </div>
+                    <div
+                        class="col-auto flex-lg-grow-1 flex-xl-grow-0 d-none d-lg-flex order-4 navbar__links-and-search order-lg-2 ml-lg-auto">
+                        <div class="row align-items-center flex-grow-1">
+                            <div class="col-auto">
+                                <ul class="navbar__links d-none d-lg-flex">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/selenium-training?q=headers">Selenium Training</a></li>
+                                    <li><a href="https://demoqa.com" rel="noopener" target="_blank">Demo Site</a></li>
+                                    <li><a href="/about">About</a></li>
+                                </ul>
+                            </div>
+                            <div class="navbar__search col-auto  ml-lg-auto ml-xl-0">
+                                <form action="/search" method="GET" autocomplete="off" id="search-form">
+                                    <input type="text" class="navbar__search--input" placeholder="Search" aria-label="Search" name="keyword">
+                                    <icon class="icon-search"></icon>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-auto order-3 order-lg-1">
+                        <a class="navbar__tutorial-menu">
+                            <span class="navbar__tutorial-menu--menu-bars">
+<span class="bar-long"></span>
+                            <span class="bar-long"></span>
+                            <span class="bar-short"></span>
+                            </span>
+                            <span class="navbar__tutorial-menu--text">Tutorials</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="article-body">
+            <section>
+                <div class="row first-row">
+                    <div class="col-auto breadcrumbs">
+                        <ul class="breadcrumbs__list">
+                            <li class="fs-13 d-inline-block pl-1 pr-2 font-weight-bold text-uppercase">
+                                <a class="fs-13 lh-26" href="/">Home</a>
+                            </li>
+                            <li class="fs-13 d-inline-block pl-1 pr-2 font-weight-bold text-uppercase">
+                                <a class="fs-13 lh-26" href="/categories/postman">Postman</a>
+                            </li>
+                            <li class="fs-13 d-inline-block pl-1 pr-2 font-weight-bold text-uppercase">
+                                <span>GET Requests in Postman</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="toc d-xl-none">
+                <div class="row first-row">
+                    <div class="col-12">
+                        <div class="toc--heading pointer">
+                            <i class="icon icon-toc"></i>
+                            <span class="fs-14 lh-17 font-weight-bold">Table of Contents</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="toc--menu">
+                            <ul>
+                                <li>
+                                    <div><span>Postman Tutorial</span>
+                                        <icon class="icon-down"></icon>
+                                    </div>
+                                    <ul>
+                                        <li><a href="/postman/postman-tutorial/" title="Index">Index</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div><span>Postman Basics</span>
+                                        <icon class="icon-down"></icon>
+                                    </div>
+                                    <ul>
+                                        <li><a href="/postman/api-testing-with-postman/"
+                                                title="API Testing with Postman">API Testing with Postman</a></li>
+                                        <li><a href="/postman/download-and-install-postman/"
+                                                title="Download Postman and Install On Windows and MacOS">Download
+                                                Postman and Install On Windows and MacOS</a></li>
+                                        <li><a href="/postman/postman-navigation/" title="Postman Navigation">Postman
+                                                Navigation</a></li>
+                                        <li><a href="/postman/create-new-request-in-postman/"
+                                                title="Create New Request in Postman">Create New Request in Postman</a>
+                                        </li>
+                                        <li><a href="/postman/get-request-in-postman/"
+                                                title="GET Requests in Postman">GET Requests in Postman</a></li>
+                                        <li><a href="/postman/response-in-postman/" title="Response in Postman">Response
+                                                in Postman</a></li>
+                                        <li><a href="/postman/request-parameters-in-postman/"
+                                                title="Request Parameters in Postman">Request Parameters in Postman</a>
+                                        </li>
+                                        <li><a href="/postman/post-request-in-postman/"
+                                                title="POST Request using Postman">POST Request using Postman</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div><span>Postman Advance</span>
+                                        <icon class="icon-down"></icon>
+                                    </div>
+                                    <ul>
+                                        <li><a href="/postman/basic-authentication-in-postman/"
+                                                title="Basic Authentication in Postman">Basic Authentication in
+                                                Postman</a></li>
+                                        <li><a href="/postman/environment-variables-in-postman/"
+                                                title="Environment Variables in Postman">Environment Variables in
+                                                Postman</a></li>
+                                        <li><a href="/postman/collections-in-postman/"
+                                                title="Collections In Postman">Collections In Postman</a></li>
+                                        <li><a href="/postman/test-and-collection-runner-in-postman/"
+                                                title="Collection Runner and Writing Test in Postman">Collection Runner
+                                                and Writing Test in Postman</a></li>
+                                        <li><a href="/postman/monitor-collections-in-postman/"
+                                                title="Postman API and Collection Monitors">Postman API and Collection
+                                                Monitors</a></li>
+                                        <li><a href="/postman/workflows-in-postman/"
+                                                title="Workflows in Postman">Workflows in Postman</a></li>
+                                        <li><a href="/postman/pre-request-script-in-postman/"
+                                                title="Pre-Request Script in Postman">Pre-Request Script in Postman</a>
+                                        </li>
+                                        <li><a href="/postman/assertions-in-postman-with-chai-assertion-library/"
+                                                title="Assertions in Postman with Chai Assertion Library">Assertions in
+                                                Postman with Chai Assertion Library</a></li>
+                                        <li><a href="/postman/different-types-of-asserts-in-postman/"
+                                                title="Different types of Asserts in Postman">Different types of Asserts
+                                                in Postman</a></li>
+                                        <li><a href="/postman/mock-server-in-postman/"
+                                                title="Mock Server in Postman">Mock Server in Postman</a></li>
+                                        <li><a href="/postman/http-cookies/" title="HTTP Cookies">HTTP Cookies</a></li>
+                                        <li><a href="/postman/cookies-in-postman/" title="Cookies in Postman">Cookies in
+                                                Postman</a></li>
+                                        <li><a href="/postman/share-session-id-across-different-requests-in-postman/"
+                                                title="Share Session ID across Different Requests in Postman">Share
+                                                Session ID across Different Requests in Postman</a></li>
+                                        <li><a href="/postman/sessions-in-postman/" title="Sessions In Postman">Sessions
+                                                In Postman</a></li>
+                                        <li><a href="/postman/oauth-2-0-authorization/"
+                                                title="OAuth 2.0 Authorization">OAuth 2.0 Authorization</a></li>
+                                        <li><a href="/postman/oauth-2-0-authorization-with-postman/"
+                                                title="OAuth 2.0 Authorization with Postman">OAuth 2.0 Authorization
+                                                with Postman</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div><span>Postman Newman</span>
+                                        <icon class="icon-down"></icon>
+                                    </div>
+                                    <ul>
+                                        <li><a href="/postman/what-is-newman-in-postman/"
+                                                title="API Testing Using Postman and Newman">API Testing Using Postman
+                                                and Newman</a></li>
+                                        <li><a href="/postman/install-newman-using-npm/"
+                                                title="Install Newman using NPM">Install Newman using NPM</a></li>
+                                        <li><a href="/postman/running-collection-using-newman/"
+                                                title="Running Collection Using Newman">Running Collection Using
+                                                Newman</a></li>
+                                        <li><a href="/postman/newman-optional-parameters-configurations/"
+                                                title="Newman Optional Parameters & Configurations">Newman Optional
+                                                Parameters & Configurations</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div><span>Continuous Integration with Jenkins</span>
+                                        <icon class="icon-down"></icon>
+                                    </div>
+                                    <ul>
+                                        <li><a href="/postman/postman-with-newman-jenkins/"
+                                                title="Postman with Newman & Jenkins">Postman with Newman & Jenkins</a>
+                                        </li>
+                                        <li><a href="/postman/configure-jenkins-job-to-run-batch-command/"
+                                                title="Configure Jenkins Job to Run Batch Command">Configure Jenkins Job
+                                                to Run Batch Command</a></li>
+                                        <li><a href="/postman/run-postman-collection-on-jenkins/"
+                                                title="Run Postman Collection on Jenkins">Run Postman Collection on
+                                                Jenkins</a></li>
+                                        <li><a href="/postman/generate-newman-reports-on-jenkins/"
+                                                title="Generate Newman Reports on Jenkins">Generate Newman Reports on
+                                                Jenkins</a></li>
+                                        <li><a href="/postman/publish-jenkins-html-reports-for-newman/"
+                                                title="Publish Jenkins HTML Reports for Newman">Publish Jenkins HTML
+                                                Reports for Newman</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div><span>Postman Extras</span>
+                                        <icon class="icon-down"></icon>
+                                    </div>
+                                    <ul>
+                                        <li><a href="/postman/guid/" title="GUID - Global Unique Identifiers">GUID -
+                                                Global Unique Identifiers</a></li>
+                                        <li><a href="/postman/guid-in-postman/" title="GUID in Postman">GUID in
+                                                Postman</a></li>
+                                        <li><a href="/postman/api-documentation-in-postman/"
+                                                title="API Documentation in Postman">API Documentation in Postman</a>
+                                        </li>
+                                        <li><a href="/postman/postman-interview-questions/"
+                                                title="Interview Questions">Interview Questions</a></li>
+                                        <li><a href="/postman/postman-cheat-sheet/" title="Cheat Sheet">Cheat Sheet</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="row first-row">
+                <div class="article-body__left-menu col-auto d-none d-xl-block">
+                    <div class="article-body__left-menu--wrapper">
+                        <ul>
+                            <li>
+                                <div><span>Postman Tutorial</span>
+                                    <icon class="icon-down"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/postman/postman-tutorial/" title="Index">Index</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Postman Basics</span>
+                                    <icon class="icon-down"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/postman/api-testing-with-postman/"
+                                            title="API Testing with Postman">API Testing with Postman</a></li>
+                                    <li><a href="/postman/download-and-install-postman/"
+                                            title="Download Postman and Install On Windows and MacOS">Download Postman
+                                            and Install On Windows and MacOS</a></li>
+                                    <li><a href="/postman/postman-navigation/" title="Postman Navigation">Postman
+                                            Navigation</a></li>
+                                    <li><a href="/postman/create-new-request-in-postman/"
+                                            title="Create New Request in Postman">Create New Request in Postman</a></li>
+                                    <li><a href="/postman/get-request-in-postman/" title="GET Requests in Postman">GET
+                                            Requests in Postman</a></li>
+                                    <li><a href="/postman/response-in-postman/" title="Response in Postman">Response in
+                                            Postman</a></li>
+                                    <li><a href="/postman/request-parameters-in-postman/"
+                                            title="Request Parameters in Postman">Request Parameters in Postman</a></li>
+                                    <li><a href="/postman/post-request-in-postman/"
+                                            title="POST Request using Postman">POST Request using Postman</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Postman Advance</span>
+                                    <icon class="icon-down"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/postman/basic-authentication-in-postman/"
+                                            title="Basic Authentication in Postman">Basic Authentication in Postman</a>
+                                    </li>
+                                    <li><a href="/postman/environment-variables-in-postman/"
+                                            title="Environment Variables in Postman">Environment Variables in
+                                            Postman</a></li>
+                                    <li><a href="/postman/collections-in-postman/"
+                                            title="Collections In Postman">Collections In Postman</a></li>
+                                    <li><a href="/postman/test-and-collection-runner-in-postman/"
+                                            title="Collection Runner and Writing Test in Postman">Collection Runner and
+                                            Writing Test in Postman</a></li>
+                                    <li><a href="/postman/monitor-collections-in-postman/"
+                                            title="Postman API and Collection Monitors">Postman API and Collection
+                                            Monitors</a></li>
+                                    <li><a href="/postman/workflows-in-postman/" title="Workflows in Postman">Workflows
+                                            in Postman</a></li>
+                                    <li><a href="/postman/pre-request-script-in-postman/"
+                                            title="Pre-Request Script in Postman">Pre-Request Script in Postman</a></li>
+                                    <li><a href="/postman/assertions-in-postman-with-chai-assertion-library/"
+                                            title="Assertions in Postman with Chai Assertion Library">Assertions in
+                                            Postman with Chai Assertion Library</a></li>
+                                    <li><a href="/postman/different-types-of-asserts-in-postman/"
+                                            title="Different types of Asserts in Postman">Different types of Asserts in
+                                            Postman</a></li>
+                                    <li><a href="/postman/mock-server-in-postman/" title="Mock Server in Postman">Mock
+                                            Server in Postman</a></li>
+                                    <li><a href="/postman/http-cookies/" title="HTTP Cookies">HTTP Cookies</a></li>
+                                    <li><a href="/postman/cookies-in-postman/" title="Cookies in Postman">Cookies in
+                                            Postman</a></li>
+                                    <li><a href="/postman/share-session-id-across-different-requests-in-postman/"
+                                            title="Share Session ID across Different Requests in Postman">Share Session
+                                            ID across Different Requests in Postman</a></li>
+                                    <li><a href="/postman/sessions-in-postman/" title="Sessions In Postman">Sessions In
+                                            Postman</a></li>
+                                    <li><a href="/postman/oauth-2-0-authorization/"
+                                            title="OAuth 2.0 Authorization">OAuth 2.0 Authorization</a></li>
+                                    <li><a href="/postman/oauth-2-0-authorization-with-postman/"
+                                            title="OAuth 2.0 Authorization with Postman">OAuth 2.0 Authorization with
+                                            Postman</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Postman Newman</span>
+                                    <icon class="icon-down"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/postman/what-is-newman-in-postman/"
+                                            title="API Testing Using Postman and Newman">API Testing Using Postman and
+                                            Newman</a></li>
+                                    <li><a href="/postman/install-newman-using-npm/"
+                                            title="Install Newman using NPM">Install Newman using NPM</a></li>
+                                    <li><a href="/postman/running-collection-using-newman/"
+                                            title="Running Collection Using Newman">Running Collection Using Newman</a>
+                                    </li>
+                                    <li><a href="/postman/newman-optional-parameters-configurations/"
+                                            title="Newman Optional Parameters & Configurations">Newman Optional
+                                            Parameters & Configurations</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Continuous Integration with Jenkins</span>
+                                    <icon class="icon-down"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/postman/postman-with-newman-jenkins/"
+                                            title="Postman with Newman & Jenkins">Postman with Newman & Jenkins</a></li>
+                                    <li><a href="/postman/configure-jenkins-job-to-run-batch-command/"
+                                            title="Configure Jenkins Job to Run Batch Command">Configure Jenkins Job to
+                                            Run Batch Command</a></li>
+                                    <li><a href="/postman/run-postman-collection-on-jenkins/"
+                                            title="Run Postman Collection on Jenkins">Run Postman Collection on
+                                            Jenkins</a></li>
+                                    <li><a href="/postman/generate-newman-reports-on-jenkins/"
+                                            title="Generate Newman Reports on Jenkins">Generate Newman Reports on
+                                            Jenkins</a></li>
+                                    <li><a href="/postman/publish-jenkins-html-reports-for-newman/"
+                                            title="Publish Jenkins HTML Reports for Newman">Publish Jenkins HTML Reports
+                                            for Newman</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Postman Extras</span>
+                                    <icon class="icon-down"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/postman/guid/" title="GUID - Global Unique Identifiers">GUID - Global
+                                            Unique Identifiers</a></li>
+                                    <li><a href="/postman/guid-in-postman/" title="GUID in Postman">GUID in Postman</a>
+                                    </li>
+                                    <li><a href="/postman/api-documentation-in-postman/"
+                                            title="API Documentation in Postman">API Documentation in Postman</a></li>
+                                    <li><a href="/postman/postman-interview-questions/"
+                                            title="Interview Questions">Interview Questions</a></li>
+                                    <li><a href="/postman/postman-cheat-sheet/" title="Cheat Sheet">Cheat Sheet</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="/selenium-training?q=leftad" class="article-body__left-menu--training-ad__wrapper">
+                        <img src="/static/images/ads/training-ad.jpg" alt="Enroll in Selenium Training" class="article-body__left-menu--training-ad" />
+                    </a>
+                </div>
+                <div class="col flex-grow-1 article-body__content">
+                    <section class="article-meta-data">
+                        <div class="article-meta-data__title-and-statistics">
+                            <h1 class="article-meta-data__title">GET Requests in Postman</h1>
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-7 article-meta-data__category-and-date">
+                                    <span>Category:</span>
+                                    <a href="/categories/postman" class="article-meta-data__category">Postman</a>
+                                    <span>,</span>
+                                    <span class="article-meta-data__published-at">January 29 2022</span>
+                                </div>
+                                <div class="col-12 col-md-auto ml-md-auto article-meta-data__statistics">
+                                    <div class="row align-items-center">
+                                        <div class="col d-inline-flex align-items-center">
+                                            <icon class="icon icon-insert_comment article-meta-data__statistic-type">
+                                            </icon>
+                                            <span class="pl-2 d-inline-block article-meta-data__statistic-value">0</span>
+                                        </div>
+                                        <div class="col d-inline-flex align-items-center">
+                                            <icon class="icon icon-like article-meta-data__statistic-type"></icon>
+                                            <span class="pl-2 d-inline-block article-meta-data__statistic-value">0</span>
+                                        </div>
+                                        <div class="col-auto d-inline-flex align-items-center">
+                                            <icon class="icon icon-access_time article-meta-data__statistic-type">
+                                            </icon>
+                                            <span class="pl-2 d-inline-block article-meta-data__statistic-value">3 min read</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-meta-data__author-and-reviewers">
+                            <div class="row">
+                                <div class="col-12 col-md-auto">
+                                    <div class="row article-meta-data__author align-items-center">
+                                        <div class="article-meta-data__author--heading col-12">Author</div>
+                                        <div class="col-auto pr-0">
+                                            <img alt="Harish Rajora's Photo" src="/users/19/image/90c2ec96-9214-48d9-bdc5-1d2545acbdc9.png" class="article-meta-data__author--image" />
+                                        </div>
+                                        <div class="col-auto pr-0 article-meta-data__author--name">Harish Rajora</div>
+                                        <div class="col-auto pl-12p">
+                                            <a href="https://www.linkedin.com/in/harishkumarrajora/" target="_blank"
+                                                aria-label="Author's Linked in profile"
+                                                class="article-meta-data__author--linked-in d-flex align-items-center justify-content-center">
+                                                <icon class="icon icon-linkedin"></icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md">
+                                    <div class="row article-meta-data__reviewers align-items-center">
+                                        <div class="article-meta-data__reviewer--heading col-12">Reviewers</div>
+                                        <div class="col-auto">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto pr-0">
+                                                    <img alt="Lakshay Sharma's Photo" src="/users/6/image/a551d073-fcc8-4588-930e-91085b1d1cae.jpeg" class="article-meta-data__reviewer--image" />
+                                                </div>
+                                                <div class="col-auto pr-0 article-meta-data__reviewer--name">Lakshay
+                                                    Sharma
+                                                </div>
+                                                <div class="col-auto pl-12p">
+                                                    <a href="https://www.linkedin.com/in/lakshay-sharma-a4216312/"
+                                                        target="_blank"
+                                                        class="article-meta-data__reviewer--linked-in d-flex align-items-center justify-content-center">
+                                                        <icon class="icon icon-linkedin"></icon>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row article-meta-data__next-and-previous align-items-center">
+                            <div class="col-12 order-md-2 article-meta-data__share">
+                                <div class="row justify-content-around">
+                                    <button aria-label="Share on Facebook" class="col article-meta-data__share--icon d-flex justify-content-center align-items-center">
+<icon class="icon-facebook"></icon>
+</button>
+                                    <button aria-label="Share on Twitter" class="col article-meta-data__share--icon  d-flex justify-content-center align-items-center">
+<icon class="icon-twitter"></icon>
+</button>
+                                    <button aria-label="Share on LinkedIn" class="col article-meta-data__share--icon  d-flex justify-content-center align-items-center">
+<icon class="icon-linkedin"></icon>
+</button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 order-md-1 col-md article-meta-data__previous">
+                                <a href="/postman/create-new-request-in-postman/"
+                                    class="article-meta-data__previous--link">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto pr-0">
+                                            <icon class="icon-previous article-meta-data__previous--icon" />
+                                        </div>
+                                        <div class="col">
+                                            <div class="article-meta-data__previous--legend">Previous Lesson</div>
+                                            <div class="article-meta-data__previous--title">Create New Request in
+                                                Postman
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md order-md-3 article-meta-data__next">
+                                <a href="/postman/response-in-postman/" class="article-meta-data__next--link">
+                                    <div class="row align-items-center">
+                                        <div class="col text-right">
+                                            <div class="article-meta-data__next--legend">Next Lesson</div>
+                                            <div class="article-meta-data__next--title">Response in Postman</div>
+                                        </div>
+                                        <div class="col-auto pl-0">
+                                            <icon class="icon-next article-meta-data__next--icon" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                    <main role="main" class="article-content">
+                        <p>Since we have now walked through Postman and seen <a
+                                href="https://toolsqa.com/postman/create-new-request-in-postman/"><em><strong>How to Create and Save a new Request in postman</strong></em></a>,
+                            it's time to get our hands on the first <em><strong>GET Request in Postman</strong></em>.
+                            When we request from a client machine (<em>User</em>) to a server machine, we follow an
+                            architecture and HTTP Protocol. I suggest you go through the below tutorials to establish a
+                            nice understanding of <em><strong>HTTP Protocol, Request &amp; Response</strong></em>. These
+                            can be viewed here:</p>
+                        <ul>
+                            <li><a
+                                    href="https://toolsqa.com/client-server/client-server-architecture-and-http-protocol/"><em><strong>Client Server Architecture and HTTP Protocol</strong></em></a>
+                            </li>
+                            <li><a
+                                    href="https://toolsqa.com/client-server/http-request/"><em><strong>HTTP Request</strong></em></a>
+                            </li>
+                            <li><a
+                                    href="https://toolsqa.com/client-server/http-response/"><em><strong>HTTP Response</strong></em></a>
+                            </li>
+                        </ul>
+                        <p>Assuming you are now familiar with the HTTP protocols and architecture, we will now talk
+                            about one specific type of request which is a <em><strong>GET</strong></em> request. A
+                            <em>GET</em> request is used to get the information from the server and does not have any
+                            side effects on the server.
+                            <em>Side-effects mean there is no updation/deletion/addition of data on the server when you are making this type of request, you just request from the server and the server responds to the request.</em>
+                        </p>
+                        <p>A <em>GET</em> request has all its information inside the <em><strong>URL</strong></em>, and
+                            since URL is visible all the time, it is advisable not to use this type of request while you
+                            send some sensitive information such as passwords.
+                            <em><strong>For example</strong>, when you press search after writing anything in the search box of google.com, you actually go for a GET request because there is no sensitive information and you are just requesting the page with search results, you notice the same search string in URL.</em>
+                        </p>
+                        <p>You may also go through the recording of the Postman Tutorial where our experts have
+                            explained the concepts in depth.
+                        <div class="embed-responsive embed-responsive-16by9"><iframe
+                                class="embed-responsive-item youtube-player" type="text/html" width="640" height="390"
+                                src="https://www.youtube.com/embed/87C2TLdCqL4" frameborder="0" webkitallowfullscreen
+                                mozallowfullscreen allowfullscreen></iframe></div>
+                        </p>
+                        <p>In this image, as you can see, there is a drop-down button which has different types of
+                            request types according to the API need. As of now do not worry about all of these different
+                            <a
+                                href="https://toolsqa.com/client-server/http-request/"><em><strong>HTTP Requests</strong></em></a>,
+                            as we will cover each of these in this Postman Tutorial series. But for now, just focus on
+                            the GET Request.</p>
+                        <ol>
+                            <li>Select <em><strong>GET</strong></em> from the list of request types.</li>
+                        </ol>
+                        <p><img src="/gallery/Postman/1.GET%20Request%20in%20Postman.png" alt="GET Request in Postman">
+                        </p>
+                        <ol start="2">
+                            <li>Enter <em><strong>www.google.com</strong></em> in the address bar as written in the
+                                above image and <em>Press <strong>Send.</strong></em> Now, look at the
+                                <em><strong>Status Code.</strong></em></li>
+                        </ol>
+                        <p><img src="/gallery/Postman/2.Status_Code_200.png" alt="Status_Code_200"></p>
+                        <p>Different status codes have different meanings and it does not matter whether it is a GEt
+                            request or any other type of request. In this scenario, we have status code
+                            <em><strong>200 OK</strong></em> which means that EndPoint is correct and it has returned
+                            the desired results. We will show some more status codes later.</p>
+                        <p>The colorful text inside the box below is the Response from the server. If you observe
+                            closely inside the response box you will see the page code has been sent to us. The above
+                            tab says <em><strong>Body</strong></em>. Body means you have selected to view the response
+                            body which is been shown inside the box. In Body, you will see three options.</p>
+                        <p><img src="/gallery/Postman/3.Pretty_Raw_Preview.png" alt="Pretty_Raw_Preview"></p>
+                        <ul>
+                            <li><em><strong>Pretty:</strong> In this code will be shown in a colorful manner with different keywords colored differently and will be indented for some of the formats for good reading.</em>
+                            </li>
+                            <li><em><strong>Raw:</strong> Same as pretty part with no colors and in single lines.</em>
+                            </li>
+                            <li><em><strong>Preview:</strong> This shows the preview of the page that has been sent. Don't worry about the google doodle if it has not been loaded properly. Try any other website by yourself.</em>
+                            </li>
+                        </ul>
+                        <p>A <em><strong>response</strong></em> is a more detailed topic than it needs to be explained
+                            in this chapter. We will be explaining the response completely in the next chapter.</p>
+                    </main>
+                    <section class="share-section">
+                        <div class="row justify-content-center align-items-md-center">
+                            <div class="col-12 col-md-auto share-section__heading">Share this post:</div>
+                            <div class="col-auto">
+                                <button class="row justify-content-center align-items-center mb-24p share-section__link">
+<div class="col-auto pr-0">
+<div class="d-flex justify-content-center align-items-center share-section__link-icon">
+<icon class="icon-facebook"></icon>
+</div>
+</div>
+<div class="col share-section__link-site">Facebook</div>
+</button>
+                            </div>
+                            <div class="col-auto">
+                                <button class="row justify-content-center align-items-center mb-24p share-section__link">
+<div class="col-auto pr-0">
+<div class="d-flex justify-content-center align-items-center share-section__link-icon">
+<icon class="icon-twitter"></icon>
+</div>
+</div>
+<div class="col share-section__link-site">Twitter</div>
+</button>
+                            </div>
+                            <div class="col-auto">
+                                <button class="row justify-content-center align-items-center mb-24p share-section__link">
+<div class="col-auto pr-0">
+<div class="d-flex justify-content-center align-items-center share-section__link-icon">
+<icon class="icon-linkedin"></icon>
+</div>
+</div>
+<div class="col share-section__link-site">Linkedin</div>
+</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="article-body__right-ads col-auto d-none d-xl-block">
+                    <div class="article-body__right-ads--wrapper">
+                        <div class="ad-one">
+                            <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+                                type="4e6665451f34be6c768797d8-text/javascript">
+                            </script>
+                            <div id="Ad.Plus-300x600-1">
+                                <script type="4e6665451f34be6c768797d8-text/javascript">
+                                    window.googletag = window.googletag || 
+                               {cmd: []}; googletag.cmd.push(function() {
+                               googletag.defineSlot('/21849154601,22343295815/Ad.Plus-300x600', 
+                               [[300, 600], [200, 446], [240, 400], [250, 250], 
+                               [250, 360], [120, 600], [300, 250], [160, 600]], 
+                               'Ad.Plus-300x600-1').addService(googletag.pubads())
+                               .setTargeting('site', ['toolsqa.com']);
+                               googletag.enableServices(); googletag.display('Ad.Plus-300x600-1'); });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="ad-two">
+                            <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+                                type="4e6665451f34be6c768797d8-text/javascript">
+                            </script>
+                            <div id="Ad.Plus-300x600-2">
+                                <script type="4e6665451f34be6c768797d8-text/javascript">
+                                    window.googletag = window.googletag || {cmd: []}; googletag.cmd.push(function() {
+                            googletag.defineSlot('/21849154601,22343295815/Ad.Plus-300x600-2', 
+                            [[300, 600], [200, 446], [240, 400], [250, 250], [250, 360], [120, 600], [300, 250], [160, 600]], 
+                            'Ad.Plus-300x600-2').addService(googletag.pubads())
+                            .setTargeting('site', ['toolsqa.com']);
+                            googletag.enableServices(); 
+                            googletag.display('Ad.Plus-300x600-2'); });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="series ">
+                <div class="row first-row mt-36p">
+                    <div class="col-12 col-sm-6 mb-12p md-lg-0">
+                        <div class="series__card">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-lg-6">
+                                    <img class="series__featured-image" src="/gallery/Postman/Create-New-Request.jpg" alt="Create New Request in Postman" />
+                                </div>
+                                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center">
+                                    <div class="series__card-title-and-button">
+                                        <div class="series__card-title">Create New Request in Postman</div>
+                                        <a href="/postman/create-new-request-in-postman/"
+                                            class="series__previous btn btn-primary-outline">
+                                            <icon class="icon-previous"></icon>
+                                            <span class="button__text">Previous Article</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mb-12p md-lg-0 ">
+                        <div class="series__card--next">
+                            <div class="row">
+                                <div class="col-12 col-lg-6 order-lg-2">
+                                    <img class="series__featured-image" src="/gallery/Postman/Response-in-Postman-2.jpg" alt="Response in Postman" />
+                                </div>
+                                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center">
+                                    <div class="series__card-title-and-button">
+                                        <div class="series__card-title">Response in Postman</div>
+                                        <a href="/postman/response-in-postman/"
+                                            class="series__previous btn btn-primary-outline">
+                                            <span class="button__text">Next Article</span>
+                                            <icon class="icon-next"></icon>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="author-details-section">
+                <div class="author">
+                    <img src="/users/19/image/90c2ec96-9214-48d9-bdc5-1d2545acbdc9.png" class="author-details-section__image" alt="Harish Rajora">
+                    <div class="author-details-section__author">
+                        <span class="legend">Author:</span>
+                        <span class="name text-tools-qa-black">Harish Rajora</span>
+                    </div>
+                    <div class="author-details-section__about">I am a computer science engineer. I love to keep growing
+                        as the technological world grows. I feel there is no powerful tool than a computer to change the
+                        world in any way. Apart from my field of study, I like reading books a lot and developing new
+                        stuff.</div>
+                    <a href="https://www.linkedin.com/in/harishkumarrajora/" class="author-details-section__follow"
+                        target="_blank">Follow me on
+                        LinkedIn
+                        <icon class="icon-linkedin ml-2"></icon>
+                    </a>
+                </div>
+                <div class="reviewers">
+                    <div class="heading">Reviewers</div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-12 col-sm-auto reviewer">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-auto pl-0 pr-0">
+                                    <img alt="Lakshay Sharma's Photo" src="/users/6/image/a551d073-fcc8-4588-930e-91085b1d1cae.jpeg" class="author-details-section__reviewer-avatar" />
+                                </div>
+                                <div class="col-auto pl-12p pr-0 name ">Lakshay Sharma</div>
+                                <a href="https://www.linkedin.com/in/lakshay-sharma-a4216312/" target="_blank"
+                                    class="author-details-section__follow mb-0 ml-2 mr-4">
+                                    <icon class="icon icon-linkedin"></icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="similar-articles">
+                <h1 class="similar-articles__section-title">Similar Articles</h1>
+                <div class="row first-row">
+                    <div class="col-12">
+                        <div class="similar-articles__grid">
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column" href="/postman/postman-tutorial/">
+                                    <img src="/gallery/Postman/postman.png" alt="Postman Tutorial" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Postman Tutorial</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Lakshay Sharma</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">3 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">Free Postman Tutorial for Beginners
+                                            or non technical people to perform API Testing with Examples. How to perform
+                                            API testing using Postman.</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/request-parameters-in-postman/">
+                                    <img src="/gallery/Postman/Request-Parameters-2.jpg" alt="Request Parameters in Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Request Parameters in Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">6 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">What are Request Parameters in
+                                            Postman and How to use them? How to copy param from one postman request to
+                                            new postman request. How to separate params in postman with a click. How to
+                                            use Buld Edit feature in PostMan? how to pass multiple parameters in Postman
+                                            Request.</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/basic-authentication-in-postman/">
+                                    <img src="/gallery/Postman/Basic-Authentication-im-Postman.jpg" alt="Basic Authentication in Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Basic Authentication in Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">8 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">How to set Basic Authentication in
+                                            Postman? Difference between Authorization and Authentication. What is Base64
+                                            encoding? HOw to Authenticate a REST call using Basic Authentication in
+                                            Postman</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/collections-in-postman/">
+                                    <img src="/gallery/Postman/Collections-in-Postman.jpg" alt="Collections In Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Collections In Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">10 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">What are Collections in Postman and
+                                            How to export them in postman? How to group requests and save collections in
+                                            Postman?</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/post-request-in-postman/">
+                                    <img src="/gallery/Postman/Post-Request-using-Postman-2.jpg" alt="POST Request using Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">POST Request using Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">8 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">How to make a POST Request in
+                                            Postman. How to send Request Body in Post method in Postman. How to send
+                                            form data in Postman in Post Request. Steps to create a Post Method in
+                                            Postman. Different ways to send the data in a POST Request in Postman</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/response-in-postman/">
+                                    <img src="/gallery/Postman/Response-in-Postman-2.jpg" alt="Response in Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Response in Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">8 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">How to Analyze Response in Postman?
+                                            Guide to understand the various Response components of postman. Various
+                                            sections in Postman.</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/create-new-request-in-postman/">
+                                    <img src="/gallery/Postman/Create-New-Request.jpg" alt="Create New Request in Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Create New Request in Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">2 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">How to Create New Request in Postman?
+                                            How to save a collection in Postman? How to use a postman and make a GET
+                                            request? Steps to create new request and associate it to the collections in
+                                            Postman.</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/postman-navigation/">
+                                    <img src="/gallery/Postman/Postman-Navigation.jpg" alt="Postman Navigation" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Postman Navigation</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">6 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">What are different Postman
+                                            components? What are Postman Navigation and their functions? What is Postman
+                                            SIdebar? Where to see postman Response? How to enter headers in postman.
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/download-and-install-postman/">
+                                    <img src="/gallery/Postman/Download-and-Install.jpg" alt="Download Postman and Install On Windows and MacOS" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">Download Postman and Install On Windows and
+                                            MacOS</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">5 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">How to Download Postman on Windows?
+                                            Steps to install Postman on Chrome. Install Postman on Windows. Install
+                                            Postman on Mac.</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="similar-articles__card-wrapper">
+                                <a class="similar-articles__card d-flex flex-column"
+                                    href="/postman/api-testing-with-postman/">
+                                    <img src="/gallery/Postman/API-Testing.jpg" alt="API Testing with Postman" class="similar-articles__featured-image" />
+                                    <div class="similar-articles__card--details">
+                                        <div class="similar-articles__title">API Testing with Postman</div>
+                                        <div class="row m-0">
+                                            <div class="col pr-0 pl-0">
+                                                <div class="similar-articles__author">By
+                                                    <span class="author-name">Harish Rajora</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                <div class="similar-articles__like">
+                                                    <icon class="icon-like"></icon>
+                                                    <span class="like-count pl-2">0</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto pl-0">
+                                                <div class="similar-articles__reading-time">9 min read</div>
+                                            </div>
+                                        </div>
+                                        <div class="similar-articles__description">API Testing with Postman. What is an
+                                            API ? What is API Testing? Strategy to Test API? Tools to perform API
+                                            Testing. What are the roles and responsibility of a Software tester to do
+                                            API Testing. What are the difference between API Test and Unit Test.</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="comments-section">
+                <button class="btn-block btn-load-comments btn-primary-outline lg">
+<span>Load Comments</span>
+<span class="badge badge-primary comments-count">0</span>
+</button>
+            </section>
+        </div>
+    </div>
+    <footer>
+        <div class="left-circle d-none d-md-block"></div>
+        <div class="container-fluid">
+            <div class="top-circle"></div>
+            <div class="row contact-us-row align-items-center">
+                <div class="col-12 col-md-6 col-lg-6 col-xl-6 ask-question-wrapper">
+                    <div class="have-any-questions text-white text-capitalize">Have any
+                        question ?</div>
+                    <div class="contact-us">Contact us anytime.</div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6 col-xs-6">
+                    <div class="contact-details-wrapper">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 contact-detail-email">
+                                <div class="contact-legend text-uppercase">Send us a message:</div>
+                                <div class="contact-detail email"><a href="/cdn-cgi/l/email-protection"
+                                        class="__cf_email__"
+                                        data-cfemail="added8ddddc2dfd9edd9c2c2c1dedccc83cec2c0">[email&#160;protected]</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row links-wrapper">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="links-heading text-uppercase text-white">SITE LINKS</div>
+                    <ul class="links">
+                        <li><a href="/categories" class="d-inline-block">Tutorials</a></li>
+                        <li><a href="/selenium-training?q=footer" class="d-inline-block">Training</a></li>
+                        <li><a href="https://demoqa.com" target="_blank" class="d-inline-block">Demo Website</a></li>
+                        <li><a href="https://www.linkedin.com/company/9458062/" target="_blank"
+                                class="d-inline-block">Team</a></li>
+                        <li><a href="/sitemap.xml" class="d-inline-block">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="links-heading text-uppercase text-white">Popular Tutorials</div>
+                    <ul class="links">
+                        <li><a href="/selenium-webdriver/selenium-tutorial/">Selenium</a></li>
+                        <li><a href="/rest-assured-tutorial">Rest Assured</a></li>
+                        <li><a href="/postman/postman-tutorial/">Postman</a></li>
+                        <li><a href="/cucumber-tutorial">Cucumber</a></li>
+                        <li><a href="/software-testing/istqb-foundation-level/">ISTQB</a></li>
+                        <li><a href="/agile/agile-scrum-tutorial/">Scrum</a></li>
+                        <li><a href="/git/git-tutorial/">Git</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="links-heading text-uppercase text-white">Recent Tutorials</div>
+                    <ul class="links">
+                        <li><a href="/testproject-tutorial">Test Project</a></li>
+                        <li><a href="/katalon-studio-tutorial">Katalon</a></li>
+                        <li><a href="/cypress-tutorial">Cypress</a></li>
+                        <li><a href="/protractor-tutorial">Protractor</a></li>
+                        <li><a href="/python-tutorial">Python</a></li>
+                        <li><a href="/javascript/javascript-tutorial/">JavaScript</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="links-heading text-uppercase text-white">Other Articles</div>
+                    <ul class="links">
+                        <li><a href="/software-testing/software-testing-tutorial/" class="d-inline-block">Software
+                                Testing</a></li>
+                        <li><a href="/appium-studio/appium-studio-tutorial/" class="d-inline-block">Appium</a></li>
+                        <li><a href="/java/junit-framework/junit-introduction/" class="d-inline-block">JUnit</a></li>
+                        <li><a href="/maven/maven-introduction/" class="d-inline-block">Maven</a></li>
+                        <li><a href="/java/java-tutorial/" class="d-inline-block">Java</a></li>
+                        <li><a href="/katalon-studio-tutorial" class="d-inline-block">Katalon</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row find-us-row text-white justify-content-center align-items-center">
+                <div class="col-12 col-lg-auto find-us-text text-white find-us-text">Find
+                    Us:</div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+                    <a class="page-link-wrapper d-block" href="https://www.facebook.com/tools.qa">
+                        <icon
+                            class="icon-facebook visit-profile-icon d-inline-flex justify-content-center align-items-center">
+                        </icon>
+                        <span class="profile-type">Facebook</span>
+                    </a>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+                    <a class="page-link-wrapper d-block" href="https://twitter.com/toolsqa">
+                        <icon
+                            class="icon-twitter visit-profile-icon d-inline-flex justify-content-center align-items-center">
+                        </icon>
+                        <span class="profile-type">Twitter</span>
+                    </a>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+                    <a class="page-link-wrapper d-block" href="https://www.linkedin.com/company/toolsqa/">
+                        <icon
+                            class="icon-linkedin visit-profile-icon d-inline-flex justify-content-center align-items-center">
+                        </icon>
+                        <span class="profile-type">Linkedin</span>
+                    </a>
+                </div>
+                <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+                    <a class="page-link-wrapper d-block"
+                        href="https://www.youtube.com/channel/UCSVljVzYbFphBtHvJgwMLsg/playlists">
+                        <icon
+                            class="icon-youtube visit-profile-icon d-inline-flex justify-content-center align-items-center">
+                        </icon>
+                        <span class="profile-type">Youtube</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row terms-row">
+                <div class="col-12 static-pages-link text-center">
+                    © 2013-2024
+                    ToolsQA.com | All rights reserved
+                </div>
+            </div>
+        </div>
+        <div class="version" aria-hidden="true">
+            1.16.1
+        </div>
+    </footer>
+    <div class="overlay"></div>
+    <nav class="mega-menu">
+        <div class="container-fluid mega-menu--container">
+            <div class="row mega-menu--wrapper">
+                <div class="col-4 first-generation--wrapper">
+                    <div class="first-generation">
+                        <ul>
+                            <li>
+                                <div><span>QA Practices</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/software-testing/istqb-foundation-level/"
+                                            title="ISTQB Preparation">ISTQB Preparation</a></li>
+                                    <li><a href="/software-testing/software-testing-tutorial/"
+                                            title="Software Testing">Software Testing</a></li>
+                                    <li><a href="/agile/agile-scrum-tutorial/" title="Agile & Scrum">Agile & Scrum</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Front-End Testing Automation</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/cypress-tutorial/" title="Cypress">Cypress</a></li>
+                                    <li><a href="/protractor-tutorial/" title="Protractor">Protractor</a></li>
+                                    <li><a href="/selenium-webdriver/selenium-tutorial/"
+                                            title="Selenium in Java">Selenium in Java</a></li>
+                                    <li><a href="/testproject-tutorial/" title="TestProject">TestProject</a></li>
+                                    <li><a href="/katalon-studio-tutorial/" title="Katalon Studio">Katalon Studio</a>
+                                    </li>
+                                    <li><a href="/selenium-c-sharp/" title="Selenium C Sharp">Selenium C Sharp</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Back-End Testing Automation</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/rest-assured-tutorial/" title="Rest Assured">Rest Assured</a></li>
+                                    <li><a href="/postman/postman-tutorial/" title="Postman">Postman</a></li>
+                                    <li><a href="/soapui/soapui-tutorial/" title="SOAPUI">SOAPUI</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Mobile Testing Automation</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/appium-studio/appium-studio-tutorial/" title="Appium Studio">Appium
+                                            Studio</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Frameworks & Libraries</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/cucumber-tutorial/" title="Cucumber">Cucumber</a></li>
+                                    <li><a href="/testng/testng-tutorial/" title="TestNG">TestNG</a></li>
+                                    <li><a href="/specflow/specflow-tutorial/" title="SpecFlow">SpecFlow</a></li>
+                                    <li><a href="/junit/junit-tutorial/" title="Junit">Junit</a></li>
+                                    <li><a href="/extent-report/extent-report-for-cucumber-testng-project/"
+                                            title="Extent report - Cucumber (TestNG)">Extent report - Cucumber
+                                            (TestNG)</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>DevOps Tools</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/maven/maven-introduction/" title="Maven">Maven</a></li>
+                                    <li><a href="/git/git-tutorial/" title="Git">Git</a></li>
+                                    <li><a href="/docker/docker-tutorial/" title="Docker">Docker</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Cross Browser Testing</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/lambdatest-tutorial/" title="LambdaTest">LambdaTest</a></li>
+                                    <li><a href="/cross-browser-testing/what-is-cross-browser-testing/"
+                                            title="Cross Browser Testing - Smartbear">Cross Browser Testing -
+                                            Smartbear</a></li>
+                                    <li><a href="/browserling/cross-browser-testing-with-browserling/"
+                                            title="Browserling">Browserling</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Non-Functional Testing</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/jmeter-tutorial/" title="JMeter">JMeter</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div><span>Programming Language</span>
+                                    <icon class="icon-next"></icon>
+                                </div>
+                                <ul>
+                                    <li><a href="/java/java-tutorial/" title="Java">Java</a></li>
+                                    <li><a href="/data-structures/data-structures-tutorial/"
+                                            title="Data Structures">Data Structures</a></li>
+                                    <li><a href="/python-tutorial/" title="Python">Python</a></li>
+                                    <li><a href="/javascript/javascript-tutorial/" title="JavaScript">JavaScript</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="second-generation">
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="third-generation">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="hamburger-menu-overlay">
+        <ul class="hamburger-menu__links d-lg-none">
+            <li><a href="/">Home</a></li>
+            <li><a href="/selenium-training?q=menu">Selenium Training</a></li>
+            <li><a href="https://demoqa.com" rel="noopener" target="_blank">Demo Site</a></li>
+            <li><a href="/">About</a></li>
+        </ul>
+    </div>
+    <div class="feedback-control">
+        <div class="feedback-text">Feedback
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="16" width="16"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+            </svg>
+        </div>
+    </div>
+    <div class="modal micromodal-slide" id="advertisement-modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <main class="modal__content position-relative" id="modal-1-content">
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                    <a href id="advertisement-url">
+                        <img id="advertisement-image" style="width: 100%" />
+                    </a>
+                </main>
+            </div>
+        </div>
+    </div>
+    <div class="modal micromodal-slide" id="feedback-modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <main class="modal__content" id="modal-2-content">
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                    <div class="alert"></div>
+                    <form class="feedback-form">
+                        <div class="d-flex flex-column flex-center gap-4">
+                            <div class="form-group">
+                                <label for="issueTitle" class="control-label">Title of the Issue:</label>
+                                <input type="text" class="form-control" id="issueTitle" name="issueTitle" required placeholder="Title of the Issue" pattern="^[a-zA-Z0-9\s\-]+$" maxlength="100" minlength="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="description">Description:</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" required placeholder="Description" pattern="^[a-zA-Z 0-9?.@,_-]+$" maxlength="1000" minlength="1"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="issueType">Type of Issue:</label>
+                                <select class="form-control" id="issueType" name="issueType" required>
+<option value="CodeChange">Code Change</option>
+<option value="Bug">Bug</option>
+<option value="Explanation">Explanation</option>
+<option value="Other">Other</option>
+</select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="email">Email:</label>
+                                <input class="form-control" type="email" id="email" name="email" required placeholder="Your Email" pattern="^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$" maxlength="255" minlength="3">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="name">Name:</label>
+                                <input class="form-control" type="text" id="name" name="name" required placeholder="Your Name" pattern="^[a-zA-Z\s]+$" maxlength="100" minlength="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="attachment">Attachment:</label>
+                                <input type="file" id="attachment" name="attachment">
+                            </div>
+                            <button class="btn btn-primary btn-primary-shadow" type="submit">Submit Feedback</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="/static/javascript/article.min.js" type="4e6665451f34be6c768797d8-text/javascript"></script>
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="4e6665451f34be6c768797d8-|49" defer></script>
+</body>
+
+</html>

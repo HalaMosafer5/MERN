@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.App-header h1 {
+  font-size: 2em;
+}
+
+.App-header h2 {
+  font-size: 1.5em;
+}
+
+.App-header ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.App-header ul li {
+  font-size: 1.2em;
+  margin: 10px 0;
+}

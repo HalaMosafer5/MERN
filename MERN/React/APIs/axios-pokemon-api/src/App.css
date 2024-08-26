@@ -1,0 +1,47 @@
+
+.app-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fetch-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #ffcb05; /* Pokémon yellow */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.fetch-button:hover {
+  background-color: #f6c910; /* Darker yellow for hover effect */
+}
+
+.pokemon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pokemon-list-item {
+  padding: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pokemon-list-item:hover {
+  background-color: #f9f9f9;
+}
